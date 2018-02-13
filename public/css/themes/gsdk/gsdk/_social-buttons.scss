@@ -1,0 +1,71 @@
+.btn-social { 
+	opacity: 0.85;
+	padding: 8px 9px;
+
+	.fa {
+		font-size: 18px;
+		vertical-align: middle;
+		display: inline-block;
+	}
+
+	&.btn-round {
+		padding: 9px 10px;
+	}
+
+	&.btn-simple {
+		padding: 9px 5px;
+		font-size: 16px;
+
+		.fa{
+			font-size: 20px;
+			position: relative;
+			top: -2px;
+			width: 24px;
+		}
+	}
+
+}
+
+@mixin btn-social($color){
+
+    color: $white-color;
+    background-color: $color;
+    border-color: $color;
+    opacity: 0.9;
+    
+    &:hover,
+    &:focus,
+    &:active,
+    &.active,
+    .open > &.dropdown-toggle{
+        background-color: $color;
+        border-color: $color;
+        color: $white-color;
+        opacity: 1;
+    }
+  
+    &.btn-border{
+      border-color: $color;
+      color: $color;
+      
+      &:hover,
+      &:focus,
+      &:active,
+      &.active,
+      .open > &.dropdown-toggle {
+        background-color: $transparent-bg;
+        color: $color;
+        border-color: $color;
+        opacity: 1;
+      }
+    
+      &:disabled,
+      &[disabled],
+      &.disabled {
+        background-color: $transparent-bg;
+        border-color: $color;
+      }  
+    }
+  
+  
+}

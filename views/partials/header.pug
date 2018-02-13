@@ -1,0 +1,51 @@
+.navbar.navbar-default.navbar-fixed-top
+	.container
+		.navbar-header
+			button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+				span.sr-only Toggle navigation
+				span.icon-bar
+				span.icon-bar
+				span.icon-bar
+			a.navbar-brand(href='/')
+				i.fa.fa-cube
+				| Kentico Cloud Tools
+		.collapse.navbar-collapse
+			ul.nav.navbar-nav
+				if isWebsite
+					li(class=(title === 'Contact') ? 'active' : undefined)
+						a(href='/feedback') Give feedback
+				if !isWebsite
+					if activeProject
+						li.dropdown
+							a.dropdown-toggle(href='#', data-toggle='dropdown')
+								span= activeProject.name
+								i.caret
+							ul.dropdown-menu
+									each project in projects
+										li
+											a(href='/set/' + project.id)= project.name
+
+			ul.nav.navbar-nav.navbar-right
+				if !user
+					li(class=(title === 'Login') ? 'active' : undefined)
+						a(href='/signin') Sign in
+					li(class=(title === 'Create Account') ? 'active' : undefined)
+						a(href='/signup') Start for free
+				else
+					if isWebsite && user
+						li
+							a(href='/dashboard') To the App
+					li.dropdown(class=(title === 'Account Management') ? 'active' : undefined)
+						a.dropdown-toggle(href='#', data-toggle='dropdown')
+							if user.profile.picture
+								img(src=user.profile.picture)
+							else
+								img(src=user.gravatar(60))
+							span= user.profile.name || user.email || user.id
+							i.caret
+						ul.dropdown-menu
+							li
+								a(href='/account') My Account
+							li.divider
+							li
+								a(href='/logout') Logout
